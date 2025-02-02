@@ -1,5 +1,9 @@
 function showResult() {
 
+  let resultInput = document.getElementById('input');
+  let resultOutput = document.getElementById('output');
+  let resultbutton = document.getElementById('transButton');
+
   var dict = {
     "Appreciation of beauty and excellence": "美や卓越性の鑑識(審美心)",
     "Bravery and valor": "勇敢",
@@ -30,16 +34,23 @@ function showResult() {
   var result = resultInput.value;
   var regresult = result.match(/(Appreciation|Bravery|Capacity|Caution|Citizenship|Creativity|Curiosity|Fairness|Forgiveness|Gratitude|Honesty|Hope|Humor|Industry|Judgment|Kindness|Leadership|Love|Modesty|Perspective|Self-control|Social|Spirituality|Zest).+-/g);
   var resultstring = "";
+
+  console.log(jaresult);
   
   if (!regresult) {
 
-    resultstring = "強みを翻訳できません...\n結果をコピーしてはりつけてね";
+    resultstring = "結果をコピーしてはりつけてね";
+
   } else {
 
-    let nor = regresult.length;
-    if (regresult.length < 24) {
+    var jaresult = regresult.map(res=>dict[res.replace(" -", "")]);
+    var filteredresult = jaresult.filter(res => res != undefined);
+    let nor = filteredresult.length;
+
+    if (nor < 24) {
 
       resultstring = "強みが 24個中 " + nor + "個しかみつかりません...\nコピー範囲がまちがっているかも？";
+
     } else {
 
       for (let i = 0; i < 24; i++) {
@@ -56,8 +67,3 @@ function showResult() {
   resultOutput.value = resultstring;
 
 }
-
-let resultInput = document.getElementById('input');
-let resultOutput = document.getElementById('output');
-let resultbutton = document.getElementById('transButton');
-resultbutton.addEventListener('click', showResult);
