@@ -1,119 +1,22 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="UTF-8">
-  <base target="_top">
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f4f4f4;
-      text-align: center;
-      padding: 20px;
-    }
-    h3 {
-      color: #333;
-    }
-    textarea {
-      width: 90%;
-      max-width: 600px;
-      padding: 10px;
-      font-size: 16px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-/*      resize: none;*/
-    }
-    .mybutton {
-      background-color: #007BFF;
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      font-size: 18px;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
-    .mybutton:hover {
-      background-color: #0056b3;
-    }
-    iframe {
-      margin-top: 20px;
-      width: 90%;
-      max-width: 759px;
-      height: 600px;
-      border: none;
-    }
-  </style>
-</head>
-<body>
-  <h3>VIAテスト結果をコピペしてください</h3>
-  <textarea id="input" cols="50" rows="10">結果をここにはりつける</textarea>
-  <br><br>
-  <input type="button" class="mybutton" id="transButton" value="翻訳する" onclick="showResult()">
-  <br><br>
-  <textarea id="output" cols="50" rows="24">翻訳がここにでます</textarea>
-  <br>
-  <h3>↓コピペ範囲の説明はこちら</h3>
-  <iframe src="https://drive.google.com/file/d/1KalowQhFqUFBz64eCL_gB_Ei9mziKbmM/preview" allow="autoplay"></iframe>
-
-  <script>
-    function showResult() {
-      var dict = {
-        "Appreciation of beauty and excellence": "美や卓越性の鑑識(審美心)",
-        "Bravery and valor": "勇敢",
-        "Capacity to love and be loved": "愛する力・愛される力",
-        "Caution, prudence, and discretion": "慎重さ・思慮深さ",
-        "Citizenship, teamwork, and loyalty": "チームワーク",
-        "Creativity, ingenuity, and originality": "創造性・独創性",
-        "Curiosity and interest in the world": "好奇心・興味",
-        "Fairness, equity, and justice": "平等・公平",
-        "Forgiveness and mercy": "寛容性",
-        "Gratitude": "感謝",
-        "Honesty, authenticity, and genuineness": "正直さ・誠実性",
-        "Hope, optimism, and future-mindedness": "希望・楽観性",
-        "Humor and playfulness": "ユーモア、遊戯心",
-        "Industry, diligence, and perseverance": "根気",
-        "Judgment, critical thinking, and open-mindedness": "判断",
-        "Kindness and generosity": "優しさ・親切心",
-        "Leadership": "リーダーシップ",
-        "Love of learning": "向学心",
-        "Modesty and humility": "謙虚",
-        "Perspective wisdom": "視点・視野",
-        "Self-control and self-regulation": "自己統制",
-        "Social intelligence": "社会的知能",
-        "Spirituality, sense of purpose, and faith": "精神性",
-        "Zest, enthusiasm, and energy": "熱意"
-      };
-
-      var result = resultInput.value;
-      var regresult = result.match(/(Appreciation|Bravery|Capacity|Caution|Citizenship|Creativity|Curiosity|Fairness|Forgiveness|Gratitude|Honesty|Hope|Humor|Industry|Judgment|Kindness|Leadership|Love|Modesty|Perspective|Self-control|Social|Spirituality|Zest).+-/g);
-
-      var resultstring = "";
-      
-      if (!regresult) {
-        resultstring = "強みを翻訳できません...\n結果をコピーしてはりつけてね";
-      } else {
-        let nor = regresult.length;
-        if (regresult.length < 24) {
-          resultstring = "強みが 24個中 " + nor + "個しかみつかりません...\nコピー範囲がまちがっているかも？";
-        } else {
-          for (let i = 0; i < regresult.length; i++) {
-            resultstring += i+1;
-            resultstring += " ";
-            resultstring += dict[regresult[i].replace(" -", "")];
-            resultstring += "\n";
-          }
-        }
-      }
-      
-      resultOutput.value = resultstring;
-
-    }
-
-    let resultInput = document.getElementById('input');
-    let resultOutput = document.getElementById('output');
-    let resultbutton = document.getElementById('transButton');
-    resultbutton.addEventListener('click', showResult);
-
-  </script>
-</body>
+  <head>
+    <meta charset="UTF-8">
+    <base target="_top">
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+  </head>
+  <body>
+    <h3>VIAテスト結果をコピペしてください</h3>
+      <textarea id="input" cols="50" rows="10">結果をここにはりつける</textarea>
+      <br>
+      <br>
+      <input type="button" class="mybutton" id="transButton" value="翻訳する" onclick="showResult()">
+      <br>
+      <br>
+      <textarea id="output" cols="50" rows="24">翻訳がここにでます</textarea>
+      <br>
+    <h3>↓コピペ範囲の説明はこちら</h3>
+      <iframe src="https://drive.google.com/file/d/1KalowQhFqUFBz64eCL_gB_Ei9mziKbmM/preview" allow="autoplay"></iframe>
+    <script src="js/show.js" charset="utf-8"></script>
+  </body>
 </html>
