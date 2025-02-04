@@ -33,39 +33,20 @@ function showResult() {
 
   var result = resultInput.value;
   var regresult = result.match(/(Appreciation|Bravery|Capacity|Caution|Citizenship|Creativity|Curiosity|Fairness|Forgiveness|Gratitude|Honesty|Hope|Humor|Industry|Judgment|Kindness|Leadership|Love|Modesty|Perspective|Self-control|Social|Spirituality|Zest).+-/g);
+  var jaresult = regresult.map(res=>dict[res.replace(" -", "")]);
+  var filteredresult = jaresult.filter(res => res != undefined);
+  var num_of_strength = Math.min(filteredresult.length, 24);
   var resultstring = "";
-  
-  if (!regresult) {
 
-    resultstring = "結果をコピーしてはりつけてね";
+  for (let i = 0; i < num_of_strength; i++) {
 
-  } else {
+    resultstring += i+1;
+    resultstring += " ";
+    resultstring += filteredresult[i];
+    resultstring += "\n";
 
-    var jaresult = regresult.map(res=>dict[res.replace(" -", "")]);
-    var filteredresult = jaresult.filter(res => res != undefined);
-    let nor = filteredresult.length;
-
-    if (nor == 0) {
-
-      resultstring = "強みが翻訳できません...\nコピー範囲がまちがっているかも？";
-
-    } else if (nor < 24) {
-
-      resultstring = "強みが 24個中 " + nor + "個しかみつかりません...\nコピー範囲がまちがっているかも？";
-
-    } else {
-
-      for (let i = 0; i < 24; i++) {
-
-        resultstring += i+1;
-        resultstring += " ";
-        resultstring += dict[regresult[i].replace(" -", "")];
-        resultstring += "\n";
-
-      }
-    }
   }
-  
+
   resultOutput.value = resultstring;
 
 }
