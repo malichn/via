@@ -34,8 +34,6 @@ function showResult() {
   var result = resultInput.value;
   var regresult = result.match(/(Appreciation|Bravery|Capacity|Caution|Citizenship|Creativity|Curiosity|Fairness|Forgiveness|Gratitude|Honesty|Hope|Humor|Industry|Judgment|Kindness|Leadership|Love|Modesty|Perspective|Self-control|Social|Spirituality|Zest).+-/g);
   var resultstring = "";
-
-  console.log(jaresult);
   
   if (!regresult) {
 
@@ -47,7 +45,11 @@ function showResult() {
     var filteredresult = jaresult.filter(res => res != undefined);
     let nor = filteredresult.length;
 
-    if (nor < 24) {
+    if (nor == 0) {
+
+      resultstring = "強みが翻訳できません...\nコピー範囲がまちがっているかも？";
+
+    } else if (nor < 24) {
 
       resultstring = "強みが 24個中 " + nor + "個しかみつかりません...\nコピー範囲がまちがっているかも？";
 
