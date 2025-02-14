@@ -33,6 +33,7 @@ function showResult() {
 
   var result = resultInput.value;
   var regresult = result.match(/(Appreciation|Bravery|Capacity|Caution|Citizenship|Creativity|Curiosity|Fairness|Forgiveness|Gratitude|Honesty|Hope|Humor|Industry|Judgment|Kindness|Leadership|Love|Modesty|Perspective|Self-control|Social|Spirituality|Zest).+-/g);
+  var enresult = regresult.map(res=>res.replace(" -", ""));
   var jaresult = regresult.map(res=>dict[res.replace(" -", "")]);
   var filteredresult = jaresult.filter(res => res != undefined);
   var num_of_strength = Math.min(filteredresult.length, 24);
@@ -41,7 +42,9 @@ function showResult() {
   for (let i = 0; i < num_of_strength; i++) {
 
     resultstring += i+1;
-    resultstring += " ";
+    resultstring += "|";
+    resultstring += enresult[i];
+    resultstring += "|";   
     resultstring += filteredresult[i];
     resultstring += "\n";
 
