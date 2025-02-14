@@ -42,14 +42,36 @@ function showResult() {
   for (let i = 0; i < num_of_strength; i++) {
 
     resultstring += i+1;
-    resultstring += "|";
+    resultstring += ",\"";
     resultstring += enresult[i];
-    resultstring += "|";   
+    resultstring += "\",\"";   
     resultstring += filteredresult[i];
-    resultstring += "\n";
+    resultstring += "\"";
 
+    if (i < num_of_strength-1) {
+      resultstring += "\r\n";
+    }
   }
 
   resultOutput.value = resultstring;
+
+}
+
+function downloadResult() {
+
+  let resultOutput = document.getElementById('output');
+  var result = resultOutput.value;
+
+  const bom = new Uint8Array([0xef, 0xbb, 0xbf]);
+  const blob = new Blob([bom, result], { type: "text/csv" });
+
+  const objectUrl = URL.createObjectURL(blob);
+  const downloadLink = document.createElement("a");
+  const fileName = "result.csv";
+
+  downloadLink.download = fileName;
+  downloadLink.href = objectUrl;
+  downloadLink.click();
+  downloadLink.remove();
 
 }
